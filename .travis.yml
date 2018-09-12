@@ -1,4 +1,41 @@
-language: node_js
-script: travis_retry npm test
-node_js:
-- '5'
+jobs:
+  include:
+    - stage: test
+      language: node_js
+      script: travis_retry npm test
+      node_js:
+      - '5'
+    - stage: deploy
+      if: branch =~ ^master$ AND type != pull_request
+
+      language: bash
+
+      group: stable
+      dist: trusty
+      os: linux
+
+      cache: pip
+
+      install: skip
+      script: |
+        registry_id=714417329994
+        region=ap-southeast-1
+        registry="${registry_id}.dkr.ecr.${region}.amazonaws.com"
+
+        project=entropy
+
+        tag_latest="$registry/$project:latest"
+        tag_build_num="$registry/$project:v${TRAVIS_BUILD_NUMBER}-build"
+        tag_commit_hash="$registry/$project:commit-${TRAVIS_COMMIT}"
+
+        docker build \
+        -t $tag_latest \
+        -t $tag_build_num \
+        -t $tag_commit_hash \
+        .
+
+        pip install awscli --upgrade --user
+        $(aws ecr get-login --registry-ids $registry_id --region $region --no-include-email)
+
+        docker push $tag_build_num
+        docker push $tag_latest
