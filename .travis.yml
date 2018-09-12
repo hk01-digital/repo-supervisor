@@ -6,7 +6,7 @@ jobs:
       node_js:
       - '5'
     - stage: deploy
-      if: branch =~ ^master$ AND type != pull_request
+      if: branch = development AND type != pull_request
 
       language: bash
 
