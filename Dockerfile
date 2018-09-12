@@ -24,3 +24,6 @@ RUN /bin/bash -c "source ~/.bashrc && nvm install 7"
 
 # Build scripts
 RUN /bin/bash -c "source ~/.bashrc && cd /opt/repo-supervisor && npm install --no-optional && npm run build"
+
+# Run server
+CMD /bin/bash -c "source ~/.bashrc && cd /opt/repo-supervisor && npm start"
