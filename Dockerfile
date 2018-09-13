@@ -22,8 +22,5 @@ ADD ./ /opt/repo-supervisor
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
 RUN /bin/bash -c "source ~/.bashrc && nvm install 7"
 
-# Build scripts
-RUN /bin/bash -c "source ~/.bashrc && cd /opt/repo-supervisor && npm install --no-optional && npm run build"
-
-# Run server
-CMD /bin/bash -c "source ~/.bashrc && cd /opt/repo-supervisor && npm start"
+# Build scripts and run
+CMD /bin/bash -c "source ~/.bashrc && cd /opt/repo-supervisor && npm install --no-optional && npm run build && npm start"
