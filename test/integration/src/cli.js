@@ -42,15 +42,18 @@ describe('Scenario: Run tool in CLI mode to detect secrets', () => {
     const msg =
 `===== Potential secrets have been detected: =====
 [./test/fixtures/integration/dir.with.secrets/foo/bar.js]
->> zJd-55qmsY6LD53CRTqnCr_g-
->> gm5yb-hJWRoS7ZJTi_YUj_tbU
->> GxC56B6x67anequGYNPsW_-TL
->> MLTk-BuGS8s6Tx9iK5zaL8a_W
->> 2g877BA_TsE-WoPoWrjHah9ta
+>> zJd-55qmsY6LD53CRTqnCr_g- (4.2137)
+>> gm5yb-hJWRoS7ZJTi_YUj_tbU (4.3239)
+>> GxC56B6x67anequGYNPsW_-TL (4.2937)
+>> MLTk-BuGS8s6Tx9iK5zaL8a_W (4.3239)
+>> 2g877BA_TsE-WoPoWrjHah9ta (4.3239)
+>> hello-world (2.8454)
 
 [./test/fixtures/integration/dir.with.secrets/foo/foo.json]
->> d7kyociU24P9hJ_sYVkqzo-kE
->> q28Wt3nAmLt_3NGpqi2qz-jQ7`;
+>> d7kyociU24P9hJ_sYVkqzo-kE (4.3737)
+>> q28Wt3nAmLt_3NGpqi2qz-jQ7 (4.2137)
+>> no-secret (2.9477)
+>> foobar (2.2516)`;
 
     exec(`node ./dist/cli.js ${dir}`, (error, stdout) => {
       expect(error).to.be.null;
@@ -61,8 +64,8 @@ describe('Scenario: Run tool in CLI mode to detect secrets', () => {
 
   it('should detect secrets in supported files when in JSON mode', (cb) => {
     const dir = './test/fixtures/integration/dir.with.secrets';
-    const msg = '{"result":{"./test/fixtures/integration/dir.with.secrets/foo/bar.js":["zJd-55qmsY6LD53CRTqnCr_g-","gm5yb-hJWRoS7ZJTi_YUj_tbU","GxC56B6x67anequGYNPsW_-TL","MLTk-BuGS8s6Tx9iK5zaL8a_W","2g877BA_TsE-WoPoWrjHah9ta"],"./test/fixtures/integration/dir.with.secrets/foo/foo.json":["d7kyociU24P9hJ_sYVkqzo-kE","q28Wt3nAmLt_3NGpqi2qz-jQ7"]}}';
-
+    // const msg = '{"result":{"./test/fixtures/integration/dir.with.secrets/foo/bar.js":["zJd-55qmsY6LD53CRTqnCr_g-","gm5yb-hJWRoS7ZJTi_YUj_tbU","GxC56B6x67anequGYNPsW_-TL","MLTk-BuGS8s6Tx9iK5zaL8a_W","2g877BA_TsE-WoPoWrjHah9ta"],"./test/fixtures/integration/dir.with.secrets/foo/foo.json":["d7kyociU24P9hJ_sYVkqzo-kE","q28Wt3nAmLt_3NGpqi2qz-jQ7"]}}';
+    const msg = '{"result":{"./test/fixtures/integration/dir.with.secrets/foo/bar.js":["zJd-55qmsY6LD53CRTqnCr_g- (4.2137)","gm5yb-hJWRoS7ZJTi_YUj_tbU (4.3239)","GxC56B6x67anequGYNPsW_-TL (4.2937)","MLTk-BuGS8s6Tx9iK5zaL8a_W (4.3239)","2g877BA_TsE-WoPoWrjHah9ta (4.3239)","hello-world (2.8454)"],"./test/fixtures/integration/dir.with.secrets/foo/foo.json":["d7kyociU24P9hJ_sYVkqzo-kE (4.3737)","q28Wt3nAmLt_3NGpqi2qz-jQ7 (4.2137)","no-secret (2.9477)","foobar (2.2516)"]}}';
     exec(`JSON_OUTPUT=1 node ./dist/cli.js ${dir}`, (error, stdout) => {
       expect(error).to.be.null;
       expect(stdout.trim()).to.be.equal(msg);
