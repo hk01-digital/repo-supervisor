@@ -9,6 +9,6 @@ module.exports = ({
 
     filters.forEach(name => result.push(issues.filter(i => i.filter.name === name)));
 
-    return { issues: result, enableSkip:config.enableSkipPRCheckBtn };
+    return { issues: result, enableSkip: config.enableSkipPRCheckBtn };
   }
 });
