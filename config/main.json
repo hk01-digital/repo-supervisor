@@ -3,9 +3,11 @@
   "pullRequests": {
     "allowedActions": ["opened", "synchronize"],
     "allowedExtensions": [".js", ".json"],
+    "allowedPrefixRegex": "^.env.*",
     "excludedPaths": ["^test"],
     "updateGithubStatus": true
   },
+  "enableSkipPRCheckBtn": true,
   "runTriggers": true,
   "statusMessages": {
     "error": "Security issues detected, check report for details.",

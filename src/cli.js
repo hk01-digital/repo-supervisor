@@ -48,7 +48,7 @@ if (files.length <= 0) {
 
 files.forEach((file) => {
   const result = filters.processFile({ filename: file }, fs.readFileSync(file), true);
-  if (result.length > 0) filesDetected[file] = result[0].filter.data.map(o => o.string);
+  if (result.length > 0) filesDetected[file] = result[0].filter.data.map(o => `${o.string} (${o.entropy})`);
 });
 
 if (Object.keys(filesDetected).length <= 0) {

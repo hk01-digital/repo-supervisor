@@ -19,7 +19,7 @@
       "skipPrefixes": [
         "test-", "foobar-"
       ],
-      "minStringLength": 15
+      "minStringLength": 6
     }
   }
 }
