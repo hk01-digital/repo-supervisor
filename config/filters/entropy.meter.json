@@ -14,7 +14,7 @@
   ],
   "options": {
     "entropyPrecision": 4,
-    "maxAllowedEntropy": 1,
+    "maxAllowedEntropy": 3,
     "preFilters": {
       "skipPrefixes": [
         "test-", "foobar-"
