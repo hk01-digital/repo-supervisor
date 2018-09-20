@@ -14,12 +14,12 @@
   ],
   "options": {
     "entropyPrecision": 4,
-    "maxAllowedEntropy": 3,
+    "maxAllowedEntropy": 4,
     "preFilters": {
       "skipPrefixes": [
         "test-", "foobar-"
       ],
-      "minStringLength": 6
+      "minStringLength": 15
     }
   }
 }
