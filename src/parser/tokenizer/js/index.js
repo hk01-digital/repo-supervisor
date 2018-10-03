@@ -16,14 +16,14 @@ module.exports = (code, config) => {
      */
     return [];
   }
+  console.log(`tokens: ${JSON.stringify(tokens, null, 6)}`);
+  const t2 = tokens.filter(t => t.type.label === 'string')
+    .map(t => t.value)
+    .filter(s => s.length < 100)
+    .filter(t => !t.match('[^\u0000-\u007F]+'));
+  console.log(`tokens after filter: ${JSON.stringify(t2, null, 6)}`);
 
   return uniq(
-    // Return only unique values of 'string' type objects.
-
-    // regex '[^\u0000-\u007F]+' use to find out non english char
-    tokens.filter(t => t.type.label === 'string')
-      .map(t => t.value)
-      .filter(t => !t.match('[^\u0000-\u007F]+'))
-      .filter(s => s.length < 100)
+      t2
   );
 };
