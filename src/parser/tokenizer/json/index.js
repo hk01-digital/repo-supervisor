@@ -15,8 +15,9 @@ const invert = (object) => {
     if (value !== null && typeof value.toString !== 'function') {
       value = toString.call(value);
     }
-
-    result[value] = key;
+    if (!value.match('[^\u0000-\u007F]+')) {
+      result[value] = key;
+    }
   });
 
   return result;
