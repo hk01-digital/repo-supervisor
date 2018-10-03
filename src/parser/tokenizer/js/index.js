@@ -21,6 +21,5 @@ module.exports = (code, config) => {
     tokens.filter(t => t.type.label === 'string')
       .map(t => t.value)
       .filter(s => s.length < 100)
-      .filter(t => !t.match('[^\u0000-\u007F]+'))
   );
 };
