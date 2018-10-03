@@ -18,12 +18,9 @@ module.exports = (code, config) => {
   }
 
   return uniq(
-    // Return only unique values of 'string' type objects.
-
-    // regex '[^\u0000-\u007F]+' use to find out non english char
     tokens.filter(t => t.type.label === 'string')
       .map(t => t.value)
-      .filter(t => !t.match('[^\u0000-\u007F]+'))
       .filter(s => s.length < 100)
+      .filter(t => !t.match('[^\u0000-\u007F]+'))
   );
 };

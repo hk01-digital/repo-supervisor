@@ -4,7 +4,7 @@ jobs:
       language: node_js
       script: travis_retry npm test
       node_js:
-      - '5'
+      - '8'
     - stage: deploy
       if: branch = development AND type != pull_request
 

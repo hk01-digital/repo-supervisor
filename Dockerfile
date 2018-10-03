@@ -20,7 +20,7 @@ ADD ./ /opt/repo-supervisor
 
 # Install node version manager
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
-RUN /bin/bash -c "source ~/.bashrc && nvm install 9"
+RUN /bin/bash -c "source ~/.bashrc && nvm install 8"
 
 # Build scripts and run
 CMD /bin/bash -c "source ~/.bashrc && cd /opt/repo-supervisor && npm install --no-optional && npm run build && npm start"
