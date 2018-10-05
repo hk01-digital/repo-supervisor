@@ -18,8 +18,7 @@ module.exports = (code, config) => {
   }
 
   return uniq(
-    tokens.filter(t => t.type.label === 'string')
-      .map(t => t.value)
-      .filter(s => s.length < 100)
+    // Return only unique values of 'string' type objects.
+    tokens.filter(t => t.type.label === 'string').map(t => t.value).filter(s => s.length < 100)
   );
 };
